@@ -5,14 +5,17 @@
 #include <string>
 
 // TODO 11: Include TutorialConfig.h
+#include "TutorialConfig.h"
 
 int main(int argc, char* argv[])
 {
   if (argc < 2) {
-    // TODO 12: Create a print statement using Tutorial_VERSION_MAJOR
-    //          and Tutorial_VERSION_MINOR
-    std::cout << "Usage: " << argv[0] << " number" << std::endl;
-    return 1;
+      // TODO 12: Create a print statement using Tutorial_VERSION_MAJOR
+      // report version
+      std::cout << argv[0] << " Version " << Tutorial_VERSION_MAJOR << "." << Tutorial_VERSION_MINOR << std::endl;
+      //          and Tutorial_VERSION_MINOR
+      std::cout << "Usage: " << argv[0] << " number" << std::endl;
+      return 1;
   }
 
   // convert input to double

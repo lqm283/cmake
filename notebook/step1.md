@@ -1,7 +1,7 @@
 <!--
  * @Author       : lqm283
  * @Date         : 2022-11-11 15:48:54
- * @LastEditTime : 2022-11-12 09:03:05
+ * @LastEditTime : 2022-11-12 10:20:47
  * @LastEditors  : lqm283
  * --------------------------------------------------------------------------------------------------------------------<
  * @Description  : Please edit a descrition about this file at here.
@@ -353,4 +353,41 @@ target_include_directories(Tutorial PUBLIC
 // TODO 10: Define Tutorial_VERSION_MAJOR and Tutorial_VERSION_MINOR
 #define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
 #define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
-``
+```
+
+##### TODO 11
+
+在 `tutorial.cxx` 中包含头文件 `TutoroalConfig.h`.
+
+```c++
+// TODO 11: Include TutorialConfig.h
+#include "TutorialConfig.h"
+```
+
+##### TODO 12
+
+在 `tutorial.cxx` 中添加代码，输出工程的版本号。
+
+```c++
+// report version
+std::cout << argv[0] << " Version " << Tutorial_VERSION_MAJOR << "." << Tutorial_VERSION_MINOR << std::endl;
+```
+
+#### 验证
+
+按照练习一中的方式构建并运行程序
+
+```bash
+lqm@VM-8-15-centos:~/develop/c/cmake/tutorial/Step1_build$ cmake ../Step1
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/lqm/develop/c/cmake/tutorial/Step1_build
+lqm@VM-8-15-centos:~/develop/c/cmake/tutorial/Step1_build$ cmake --build .
+Scanning dependencies of target Tutorial
+[ 50%] Building CXX object CMakeFiles/Tutorial.dir/tutorial.cxx.o
+[100%] Linking CXX executable Tutorial
+[100%] Built target Tutorial
+lqm@VM-8-15-centos:~/develop/c/cmake/tutorial/Step1_build$ ./Tutorial
+./Tutorial Version 1.0
+Usage: ./Tutorial number
+```
