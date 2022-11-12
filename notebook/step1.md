@@ -1,7 +1,7 @@
 <!--
  * @Author       : lqm283
  * @Date         : 2022-11-11 15:48:54
- * @LastEditTime : 2022-11-12 08:35:35
+ * @LastEditTime : 2022-11-12 09:03:05
  * @LastEditors  : lqm283
  * --------------------------------------------------------------------------------------------------------------------<
  * @Description  : Please edit a descrition about this file at here.
@@ -185,7 +185,7 @@ The square root of 16 is 4
 
 ## 练习二
 
-1. 该联系会使用到一个命令 `set` 和两个变量 `CMAKE_CXX_STANDARD` 及 `CMAKE_CXX_STANDARD_REQUIRED`。
+1. 该练习会使用到一个命令 `set` 和两个变量 `CMAKE_CXX_STANDARD` 及 `CMAKE_CXX_STANDARD_REQUIRED`。
 
 ### 目标
 
@@ -219,7 +219,7 @@ add_executable(Tutorial tutorial.cxx)
 # TODO 9: Use target_include_directories to include ${PROJECT_BINARY_DIR}
 ```
 
-#### 编写 CMakeLists.txt
+#### 编写 CMakeLists.txt 和 tutorial.cxx
 
 这里，我们完成其中的 TODO 4 到 TODO 6
 
@@ -271,4 +271,86 @@ lqm@VM-8-15-centos:~/develop/c/cmake/tutorial/Step1_build$ ./Tutorial 235
 The square root of 235 is 15.3297
 ```
 
+## 练习三
 
+1. 该练习会使用到两个变量 `<PROJECT-NAME>_VERSION_MAJOR`、`<PROJECT-NAME>_VERSION_MINOR` 及两个命令 `configure_file()` 、`target_include_directories()`。
+
+### 目标
+
+定义并在程序中获取到工程的版本号。
+
+### 要编辑的文件
+
++ CMakeLists.txt
++ tutorial.cxx
+
+### 开始
+
+CMakeLists.txt 文件的初始状态
+
+```cmake
+# TODO 1: Set the minimum required version of CMake to be 3.10
+cmake_minimum_required(VERSION 3.10)
+# TODO 2: Create a project named Tutorial
+project(Tutorial)
+# TODO 7: Set the project version number as 1.0 in the above project command
+
+# TODO 6: Set the variable CMAKE_CXX_STANDARD to 11
+#         and the variable CMAKE_CXX_STANDARD_REQUIRED to True
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# TODO 8: Use configure_file to configure and copy TutorialConfig.h.in to
+#         TutorialConfig.h
+
+# TODO 3: Add an executable called Tutorial to the project
+# Hint: Be sure to specify the source file as tutorial.cxx
+add_executable(Tutorial tutorial.cxx)
+# TODO 9: Use target_include_directories to include ${PROJECT_BINARY_DIR}
+```
+
+#### 编写 CMakeLists.txt 和 tutorial.cxx
+
+这里，我们完成 TODO 7 到 TODO 12。
+
+##### TODO 7
+
+在 CMakeLists.txt 文件中添加工程的版本
+
+```cmake
+# TODO 7: Set the project version number as 1.0 in the above project command
+project(Tutorial VERSION 1.0)
+```
+
+##### TODO 8
+
+使用 configure_file() 命令来从 TutorialConfig.h.in 生成 TutorialConfig.h 文件
+
+```cmake
+# TODO 8: Use configure_file to configure and copy TutorialConfig.h.in to
+#         TutorialConfig.h
+configure_file(TutorialConfig.h.in TutorialConfig.h)
+```
+
+##### TODO 9
+
+TutorialConfig.h 会在构建目录中生成，因此需要将该目录加入到头文件的搜索路径。
+
+```cmake
+target_include_directories(Tutorial PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           )
+```
+
+其中变量 `PROJECT_BINARY_DIR` 就是构建目录的路径。
+
+##### TODO 10
+
+在 TutorialConfig.h.in 文件中加入以下的语句，这是两个宏定义，在编译的过程中这两个宏会被分别替换为工程的主版本和次版本号。
+
+```c++
+// the configured options and settings for Tutorial
+// TODO 10: Define Tutorial_VERSION_MAJOR and Tutorial_VERSION_MINOR
+#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
+#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+``
