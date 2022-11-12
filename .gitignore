@@ -1,6 +1,8 @@
 # Prerequisites
 *.d
 
+tutorial/Step1_build
+
 # Compiled Object files
 *.slo
 *.lo
