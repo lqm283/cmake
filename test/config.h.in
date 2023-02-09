@@ -1,0 +1,12 @@
+/*
+ * @Author       : lqm283
+ * @Date         : 2023-02-09 15:13:40
+ * @LastEditTime : 2023-02-09 15:43:21
+ * @LastEditors  : lqm283
+ * --------------------------------------------------------------------------------<
+ * @Description  : Please edit a descrition about this file at here.
+ * --------------------------------------------------------------------------------<
+ * @FilePath     : /cmake/test/config.h.in
+ */
+#define main_VERSION_MAJOR ${main_VERSION_MAJOR}
+#define main_VERSION_MINOR ${main_VERSION_MINOR}
